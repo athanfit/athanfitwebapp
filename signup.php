@@ -18,23 +18,23 @@ $_SESSION['token'] = $Token;
                                 <small id="emailHelp" class="form-text text-muted">Uw email wordt alleen gebruikt voor het functioneren van de site.</small>
                             </div>
                             <div class="form-group">
-                                <label for="NewFirstname">Voornaam</label>
+                                <label for="NewFirstname">Fristname</label>
                                 <input type="text" class="form-control" name="NewFirstname" id="NewFirstname" placeholder="Enter firstname" required>
                             </div>
                             <div class="form-group">
-                                <label for="NewLastname">Achternaam</label>
+                                <label for="NewLastname">Surname</label>
                                 <input type="text" class="form-control" name="NewLastname" id="NewLastname" placeholder="Enter surname" required>
                             </div>
                             <div class="form-group">
-                                <label for="NewUsername">Achternaam</label>
+                                <label for="NewUsername">Username</label>
                                 <input type="text" class="form-control" name="NewUsername" id="NewUsername" placeholder="Enter username/displayname" required>
                             </div>
                             <div class="form-group">
-                                <label for="NewPassword">Wachtwoord</label>
-                                <input type="password" class="form-control" name="NewPassword" id="NewPassword" placeholder="vul een wachtwoord in" required>
+                                <label for="NewPassword">Password</label>
+                                <input type="password" class="form-control" name="NewPassword" id="NewPassword" placeholder="Enter password" required>
                                 <input type="hidden" name="csrfToken" value="<?= $Token ?>">
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Aanmelden</button>
+                            <button type="submit" class="btn btn-primary btn-block">Sign-up</button>
                         </form>
                     </div>
                 </div>
