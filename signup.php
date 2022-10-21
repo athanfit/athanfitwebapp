@@ -15,10 +15,10 @@ $_SESSION['token'] = $Token;
                             <div class="form-group">
                                 <label for="NewEmail">Email </label>
                                 <input type="email" class="form-control" name="NewEmail" id="NewEmail" aria-describedby="emailHelp" placeholder="name@site.com" required>
-                                <small id="emailHelp" class="form-text text-muted">Uw email wordt alleen gebruikt voor het functioneren van de site.</small>
+                                <small id="emailHelp" class="form-text text-muted">Your email will only be used for some functions of the site.</small>
                             </div>
                             <div class="form-group">
-                                <label for="NewFirstname">Fristname</label>
+                                <label for="NewFirstname">Firstname</label>
                                 <input type="text" class="form-control" name="NewFirstname" id="NewFirstname" placeholder="Enter firstname" required>
                             </div>
                             <div class="form-group">
@@ -26,15 +26,11 @@ $_SESSION['token'] = $Token;
                                 <input type="text" class="form-control" name="NewLastname" id="NewLastname" placeholder="Enter surname" required>
                             </div>
                             <div class="form-group">
-                                <label for="NewUsername">Username</label>
-                                <input type="text" class="form-control" name="NewUsername" id="NewUsername" placeholder="Enter username/displayname" required>
-                            </div>
-                            <div class="form-group">
                                 <label for="NewPassword">Password</label>
                                 <input type="password" class="form-control" name="NewPassword" id="NewPassword" placeholder="Enter password" required>
                                 <input type="hidden" name="csrfToken" value="<?= $Token ?>">
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Sign-up</button>
+                            <button type="submit" class="btn btn-primary btn-block SubmitBtn">Sign-up</button>
                         </form>
                     </div>
                 </div>

@@ -1,51 +1,56 @@
 <?php
 session_start();
-$title = "";
+$title = "Home";
 include 'includes/head.php';
 include 'includes/navbar.php';
+require 'includes/config.php';
 ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Inloggen</h5>
+                        <h5 class="card-title">Login</h5>
                         <form method="post">
                             <div class="form-group">
-                                <label for="userEmail">Email</label>
-                                <input type="email" class="form-control" name="UserEmail" id="userEmail" placeholder="naam@voorbeeld.com">
+                                <label for="Email">Email</label>
+                                <input type="email" class="form-control" name="Email" id="Email" placeholder="name@site.com">
                             </div>
                             <div class="form-group">
-                                <label for="userPassword">Wachtwoord</label>
-                                <input type="password" class="form-control" name="UserPassword" id="userPassword" placeholder="Wachtwoord">
+                                <label for="Password">Password</label>
+                                <input type="password" class="form-control" name="Password" id="Password" placeholder="••••••••••">
                             </div>
-                            <button type="submit" class="btn btn-primary LoginBtn">Inloggen</button>
+                            <button type="submit" name="submit" class="btn btn-primary SubmitBtn">Login</button>
                             
                         </form>
                         <?php
                         if (isset($_POST['submit'])) 
                         {
-                            if (!empty($_POST["UserEmail"]) &&
-                                !empty($_POST["UserPassword"])) 
+                            if (!empty($_POST["Email"]) &&
+                                !empty($_POST["Password"])) 
                                 {
-                                if (filter_var($_POST["NewUserEmail"], FILTER_VALIDATE_EMAIL))
+                                if (filter_var($_POST["Email"], FILTER_VALIDATE_EMAIL))
                                 {
-                                    $Email = $mysqli -> real_escape_string($_POST['UserEmail']);
-                                    $TextPassword = $mysqli -> real_escape_string($_POST['UserPassword']);
-                                    $Password = hash('sha256', $TextPassword);
-                                    $query = "SELECT * FROM users WHERE userEmail = '$Email' AND userPassword = '$Password'";
+                                    $Email = $mysqli -> real_escape_string($_POST['Email']);
+                                    $TextPassword = $mysqli -> real_escape_string($_POST['Password']);
+                                    $saltPassword = $TextPassword . "PannenkoekenStraat";
+                                    $Password = hash('sha256', $saltPassword);
+                                    ?><script>console.log("hash: <?= $Password ?>");</script><?php
+                                    $query = "SELECT * FROM Users WHERE UserEmail = '$Email' AND UserPassword = '$Password'";
                                     $resultaat = mysqli_query($mysqli, $query);
                                     if (mysqli_num_rows($resultaat) > 0)
                                     {
+                                        // done
                                         $user = mysqli_fetch_array($resultaat);
-                                        $_SESSION['ID'] = $user['userID'];
-                                        $_SESSION['email'] = $user['userEmail'];
+                                        $_SESSION['ID'] = $user['UserID'];
+                                        $_SESSION['email'] = $user['UserEmail'];
+                                        header("Refresh:0");
                                     }
                                     else
                                     {
                                         ?>
                                         <div class="alert alert-danger" role="alert">
-                                            Ging wat fout bij het formulier, er is geen acount gemaakt
+                                            Something went wrong, username and or password may be incorect
                                         </div>
                                         <?php
                                     }
@@ -55,15 +60,28 @@ include 'includes/navbar.php';
                         ?>
                     </div>
                     <div class="card-footer text-muted">
-                        Nog geen acount, <a href="signup.php">klink hier</a> om een acount aan te maken.
+                        No account, <a href="signup.php">Click here</a> to signup.<br>
+                        Forgot password? <a href="resetPassword.php">Click here</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-8">
+                <?php
+                if (isset($_SESSION["ID"])){
+                    ?>
+                    <div class="alert alert-warning" role="alert">
+                        ingelogd
+                    </div>
+                    <?php
+                } else {
+                    ?>
+                    <div class="alert alert-warning" role="alert">
+                        niet Ingelogd
+                    </div>
+                    <?php
+                }
+                ?>
                 
-                <div class="alert alert-warning" role="alert">
-                    De site is nog in ontwikkeling.
-                </div>
             </div>
         </div>
     </div>

@@ -7,6 +7,11 @@
 .signupCol{
     margin: 0 auto;
 }
-.LoginBtn{
+.SubmitBtn{
     float: right;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.alert{
+    display: block;
 }
