@@ -21,7 +21,6 @@ require 'includes/config.php';
                                 <input type="password" class="form-control" name="Password" id="Password" placeholder="••••••••••">
                             </div>
                             <button type="submit" name="submit" class="btn btn-primary SubmitBtn">Login</button>
-                            
                         </form>
                         <?php
                         if (isset($_POST['submit'])) 
@@ -61,7 +60,7 @@ require 'includes/config.php';
                     </div>
                     <div class="card-footer text-muted">
                         No account, <a href="signup.php">Click here</a> to signup.<br>
-                        Forgot password? <a href="resetPassword.php">Click here</a>
+                        Forgot password? <a href="password/">Click here</a>
                     </div>
                 </div>
             </div>

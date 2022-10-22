@@ -8,8 +8,9 @@ $_SESSION['token'] = $Token;
 ?>
     <div class="container">
         <div class="row">
-            <div class="col-sm-7 signupCol">
+            <div class="col-sm-7 smallcard">
                 <div class="card">
+                    <h5 class="card-header">Sign-Up</h5>
                     <div class="card-body">
                         <form action="php/SignUpProcess.php" method="post">
                             <div class="form-group">

@@ -6,9 +6,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link disabled" href="">Contact</a>
-            </li>
+            </li> -->
             <?php
             if (isset($_SESSION["ID"])){
             ?>
