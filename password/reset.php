@@ -60,12 +60,9 @@ if($result){
             <h5 class="card-header">Password reset</h5>
                 <div class="card-body">
                     <h5 class="card-title">Link expired or not valid</h5>
-                    <p class="card-text">The link u used is expired. If u requested the link this day, please try again this could been our fault.</p>
+                    <p class="card-text">The link you used is expired. If you requested the link this day, please try again this could been our fault.</p>
                     <p class="card-text">The link may not be valid, try again.</p>
                     <a href="./" class="card-link">Reset form</a>
-                </div>
-                <div class="card-footer">
-                    The password u now fill in will be your new password for the profile with the email above.
                 </div>
             </div>
         </div>
