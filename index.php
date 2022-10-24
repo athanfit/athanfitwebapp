@@ -43,6 +43,7 @@ require 'includes/config.php';
                                         $user = mysqli_fetch_array($resultaat);
                                         $_SESSION['ID'] = $user['UserID'];
                                         $_SESSION['email'] = $user['UserEmail'];
+                                        $_SESSION['verified'] = $user['verified'];
                                         header("Refresh:0");
                                     }
                                     else
@@ -72,6 +73,14 @@ require 'includes/config.php';
                         ingelogd
                     </div>
                     <?php
+                    if ($_SESSION["verified"] == 'not verified')
+                    {
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                            Please verify your email!
+                        </div>
+                        <?php
+                    }
                 } else {
                     ?>
                     <div class="alert alert-warning" role="alert">
