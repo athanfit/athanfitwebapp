@@ -26,7 +26,7 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                         $Password = hash('sha256', $saltPassword);
                         $sql = "UPDATE Users SET UserPassword='$Password' WHERE UserID='$userID'";
                         if ($mysqli->query($sql) === TRUE) {
-                            echo "Record updated successfully";
+                            ?><script>console.log("Record updated successfully.");</script><?php
                         } else {
                             echo "Error updating record: " . $mysqli->error;
                         }
