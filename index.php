@@ -8,6 +8,15 @@ require 'includes/config.php';
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
+                <?php
+                if (isset($_SESSION["ID"])){
+                ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $_SESSION['Firstname'] ?>, your logged in.
+                </div>
+                <?php
+                } else {
+                ?>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Login</h5>
@@ -43,6 +52,7 @@ require 'includes/config.php';
                                         $user = mysqli_fetch_array($resultaat);
                                         $_SESSION['ID'] = $user['UserID'];
                                         $_SESSION['email'] = $user['UserEmail'];
+                                        $_SESSION['Firstname'] = $user['UserFirstname'];
                                         $_SESSION['verified'] = $user['verified'];
                                         header("Refresh:0");
                                     }
@@ -64,6 +74,9 @@ require 'includes/config.php';
                         Forgot password? <a href="password/">Click here</a>
                     </div>
                 </div>
+                <?php
+                }
+                ?>
             </div>
             <div class="col-sm-8">
                 <?php
