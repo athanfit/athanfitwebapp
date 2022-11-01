@@ -4,16 +4,19 @@ $title = "Aanleden";
 include '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
+//$times = date();
 $today = date("Y-m-d");
+$time1  = date('H:i:s');
+$time = date('H:i:s', strtotime('+1 hours', strtotime($time1)));
 ?>
 <div class="container">
     <div class="col-sm-7 smallcard">
 <?PHP
 // above all includes
-if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://train.4260.nl/password/") 
+if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://train.4260.nl/password/")
     {
     if (!empty($_POST['Email'])     &&
-        !empty($_POST["csrfToken"])) 
+        !empty($_POST["csrfToken"]))
         {
         if (isset($_SESSION["token"]) && $_SESSION["token"] == $_POST["csrfToken"]) {
             if (filter_var($_POST["Email"], FILTER_VALIDATE_EMAIL)){
@@ -25,16 +28,16 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                 } while($rows > 1);
                 // get the ID of the user from the DB
                 $sql = "SELECT UserID FROM Users WHERE UserEmail = '$email'";
-                $result=$mysqli->query($sql); 
-                if($result){ 
+                $result=$mysqli->query($sql);
+                if($result){
                     if ($result -> num_rows > 0) {
-                        $fetchUserData = $result->fetch_assoc(); 
+                        $fetchUserData = $result->fetch_assoc();
                         $userID = $fetchUserData['UserID'];
                         $permitted_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_~';
                         $hash = substr(str_shuffle($permitted_chars), 0, 26);
-                        $sql = "INSERT INTO Password (ID, UserID, `Hash`, `Date`) VALUES  (?, ?, ?, ?)";
+                        $sql = "INSERT INTO Password (ID, UserID, `Hash`, `Date`, `Time`) VALUES  (?, ?, ?, ?, ?)";
                         if ($stmt = $mysqli->prepare($sql)) {
-                            $stmt->bind_param('isss', $ID, $userID, $hash, $today);
+                            $stmt->bind_param('issss', $ID, $userID, $hash, $today, $time);
                             if ($stmt->execute()) {
                                 ?><script>console.log("Done, data to DB");</script><?php
                             } else {
@@ -68,7 +71,7 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                         mail($to,$subject,$message,$headers);
                     }
                 }
-                
+
                 ?>
                 <div class="card">
                     <div class="card-body">
@@ -81,7 +84,7 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                     </div>
                 </div>
                 <?php
-                
+
             } else {
                 ?><script>console.log("Not an email adress");</script><?php
             }
