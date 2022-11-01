@@ -4,7 +4,6 @@ $title = "Aanleden";
 include '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
-//$times = date();
 $today = date("Y-m-d");
 $time1  = date('H:i:s');
 $time = date('H:i:s', strtotime('+1 hours', strtotime($time1)));
