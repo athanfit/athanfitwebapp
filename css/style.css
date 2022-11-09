@@ -4,13 +4,26 @@
 .card{
     margin-top: 1em;
 }
+.list-group{
+    margin-top: 1em;
+}
 .smallcard{
     margin: 0 auto;
+}
+.extraBtn{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 .SubmitBtn{
     float: right;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+}
+.smallBtn{
+    --bs-btn-padding-y: .25rem; 
+    --bs-btn-padding-x: .5rem; 
+    --bs-btn-font-size: .75rem;
+    margin-top: 0.5em;
 }
 .alert{
     display: block;

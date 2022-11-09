@@ -1,9 +1,9 @@
 <?php
 session_start();
 $title = "Program";
+require '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
-require '../includes/config.php';
 if (isset($_SESSION['ID'])   &&
     isset($_SESSION['email'])) 
     {
