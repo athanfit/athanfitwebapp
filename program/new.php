@@ -17,7 +17,7 @@ if (isset($_SESSION['ID'])   &&
             <div class="card">
                 <h5 class="card-header">New program</h5>
                 <div class="card-body">
-                    <form action="nieuwProcess.php" method="post">
+                    <form action="newProcess.php" method="post">
                         <div class="form-group">
                             <label for="title">Title:</label>
                             <input type="text" class="form-control" name="title" id="title" maxlength="70">
