@@ -15,7 +15,7 @@ if (isset($_SESSION['ID'])   &&
     <div class="container">
         <div class="col-sm-7 smallcard">
             <div class="card">
-                <h5 class="card-header">Nieuw program</h5>
+                <h5 class="card-header">New program</h5>
                 <div class="card-body">
                     <form action="nieuwProcess.php" method="post">
                         <div class="form-group">
@@ -28,7 +28,7 @@ if (isset($_SESSION['ID'])   &&
                         </div>
                         <div class="form-group" id="exersices">
                             <label for="Exersice1">Exersice:*</label>
-                            <input type="text" class="form-control" name="Exersice" id="Exersice" aria-describedby="ExersiceHelp" placeholder="Squat 10-12reps 3sets">
+                            <input type="text" class="form-control" name="Exersice" id="Exersice" aria-describedby="ExersiceHelp" placeholder="Squat 6-8reps 3sets">
                             <small id="ExersiceHelp" class="form-text text-muted">Enter here the name of the exersice and if wanted reps and sets.</small>
                         </div>
                         <input type="hidden" name="csrfToken" value="<?= $Token ?>">
@@ -36,6 +36,9 @@ if (isset($_SESSION['ID'])   &&
                         <button type="submit" class="btn btn-primary btn-block SubmitBtn">Submit</button>
                     </form>
                 </div>
+            </div>
+            <div class="d-grid gap-2">
+                <a href="./" class="btn bigBtn btn-primary" type="button">Go back</a>
             </div>
         </div>
     </div>

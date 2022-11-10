@@ -20,7 +20,7 @@ if (isset($_SESSION['ID'])   &&
                     </div>
                 </div>
                 <div class="d-grid gap-2">
-                    <a href="nieuw.php" class="btn bigBtn btn-primary" type="button">New program</a>
+                    <a href="new.php" class="btn bigBtn btn-primary" type="button">New program</a>
                 </div>
             </div>
             <div class="col-sm-8">

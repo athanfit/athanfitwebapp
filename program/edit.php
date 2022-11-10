@@ -49,7 +49,8 @@ if (isset($_SESSION['ID'])   &&
                         <?php
                         foreach ($exercise as $value) {
                             ?>
-                            <div class='form-group'><input type='text' value="<?= $value ?>" class='form-control' name='Exersice"+counter+"' id='Exersice'><button type='button' class='btn btn-outline-secondary smallBtn' onClick='removeInput("+dynamicInput[counter]+");'> - </button></div>
+                            <script>window.onload = addInput("<?= $value ?>")</script>
+                            <!-- <div class='form-group'><input type='text' value="" class='form-control' name='Exersice"+counter+"' id='Exersice'><button type='button' class='btn btn-outline-secondary smallBtn' onClick='removeInput("+dynamicInput[counter]+");'> - </button></div> -->
                             <?php
                         }
                         ?>
@@ -58,6 +59,9 @@ if (isset($_SESSION['ID'])   &&
                         <button type="submit" class="btn btn-primary btn-block SubmitBtn">Submit</button>
                     </form>
                 </div>
+            </div>
+            <div class="d-grid gap-2">
+                <a href="./" class="btn bigBtn btn-primary" type="button">Go back</a>
             </div>
         </div>
     </div>

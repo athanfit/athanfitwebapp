@@ -1,6 +1,9 @@
 .alert{
     margin: 1em 0;
 }
+.container{
+    padding-bottom: 2em;
+}
 .card{
     margin-top: 1em;
 }
@@ -30,6 +33,7 @@
 
 .bigBtn{
     margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 .alert{
     display: block;
