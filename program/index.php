@@ -4,6 +4,7 @@ $title = "Program";
 require '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
+$userID = $_SESSION["ID"];
 if (isset($_SESSION['ID'])   &&
     isset($_SESSION['email'])) 
     {
@@ -13,38 +14,45 @@ if (isset($_SESSION['ID'])   &&
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <div class="list-group">
-                    <a href="nieuw.php" class="list-group-item list-group-item-action">Nieuw</a>
-                    <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                    <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Programs</h5>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="nieuw.php" class="btn bigBtn btn-primary" type="button">New program</a>
                 </div>
             </div>
             <div class="col-sm-8">
                 <?php
-                if (isset($_SESSION["ID"])){
+                $query = "SELECT * FROM `Programs` WHERE UserID = '$userID'";
+                $result = mysqli_query($mysqli, $query);
+                while ($row = mysqli_fetch_array($result))
+                {
+                    $id = $row['ID'];
+                    $title = $row['Title'];
+                    $description = $row['Description'];
+                    $data = $row['Program'];
+                    $program = unserialize($data);
+
                     ?>
-                    <div class="alert alert-warning" role="alert">
-                        ingelogd
-                    </div>
-                    <?php
-                    if ($_SESSION["verified"] == 'not verified')
-                    {
-                        ?>
-                        <div class="alert alert-danger" role="alert">
-                            Please verify your email!
+                    <div class="card">
+                        <div class="card-body">
+                            <h5><?= $title ?></h5>
+                            <p><?= $description ?></p>
+                            <ul class="list-group">
+                                <?php
+                                foreach ($program as $value) {
+                                    ?><li class="list-group-item"><?= $value ?></li><?php
+                                }
+                                ?>
+                            </ul>
+                            <a type="button" href="edit.php?ID=<?= $id ?>" class="btn btn-outline-primary SubmitBtn">Edit</a>
                         </div>
-                        <?php
-                    }
-                } else {
-                    ?>
-                    <div class="alert alert-warning" role="alert">
-                        niet Ingelogd
                     </div>
                     <?php
                 }
                 ?>
-                
             </div>
         </div>
     </div>

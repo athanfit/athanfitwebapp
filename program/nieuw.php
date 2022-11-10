@@ -33,7 +33,7 @@ if (isset($_SESSION['ID'])   &&
                         </div>
                         <input type="hidden" name="csrfToken" value="<?= $Token ?>">
                         <button type="button" class="btn btn-secondary extraBtn" onClick="addInput()">Add exersice</button>
-                        <button type="submit" class="btn btn-primary btn-block SubmitBtn">Sign-up</button>
+                        <button type="submit" class="btn btn-primary btn-block SubmitBtn">Submit</button>
                     </form>
                 </div>
             </div>

@@ -18,11 +18,17 @@
     float: right;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+    margin-left: 0.5em;
 }
 .smallBtn{
     --bs-btn-padding-y: .25rem; 
     --bs-btn-padding-x: .5rem; 
     --bs-btn-font-size: .75rem;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.bigBtn{
     margin-top: 0.5em;
 }
 .alert{
