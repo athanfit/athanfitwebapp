@@ -4,6 +4,7 @@ $title = "Aanleden";
 include '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
+$today = date("Y-m-d");
 // above all includes
 // below begin checking if all data is valid for the database
 if (!empty($_POST["NewEmail"])      &&
@@ -46,10 +47,33 @@ if (!empty($_POST["NewEmail"])      &&
                 }
                 while($rows > 1)
                 ?> <script>console.log("Data: <?= $ID ?>");</script> <?php
-                $sql = "INSERT INTO Users (UserID, UserFirstname, UserLastname, UserPassword, UserEmail) VALUES  (?, ?, ?, ?, ?)";
-                if ($stmt = $mysqli->prepare($sql)) {
-                    $stmt->bind_param('sssss', $ID, $Firstname, $Lastname, $Password, $Email);
+                $sqlUser = "INSERT INTO Users (UserID, UserFirstname, UserLastname, UserPassword, UserEmail, `Date`) VALUES  (?, ?, ?, ?, ?, ?)";
+                if ($stmt = $mysqli->prepare($sqlUser)) {
+                    $stmt->bind_param('ssssss', $ID, $Firstname, $Lastname, $Password, $Email, $today);
                     if ($stmt->execute()) {
+                        // ID for verify
+                        do {
+                            $permitted_chars = '1234567890abcdeABCDE1234567890';
+                            $IDv = substr(str_shuffle($permitted_chars), 0, 12);
+                            $resultv = mysqli_query($mysqli, "SELECT ID FROM `Verify` WHERE ID = '$IDv'");
+                            $rowsv = mysqli_num_rows($resultv);
+                        }
+                        while($rowsv > 1);
+                        // hash for verify
+                        $permitted_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_~';
+                        $hash = substr(str_shuffle($permitted_chars), 0, 26);
+                        // make verify record
+                        $sqlVerify = "INSERT INTO `Verify` (ID ,UserID, `Hash`, `Date`) VALUES  (?, ?, ?, ?)";
+                        if ($stmtv = $mysqli->prepare($sqlVerify)) {
+                            $stmtv->bind_param('ssss', $IDv, $ID, $hash, $today);
+                            if ($stmtv->execute()) {
+                                ?> <script>console.log("verify insert works");</script> <?php
+                            } else {
+                                echo "is mislukt(verify)";
+                            }
+                        } else {
+                            echo "zit een fout in de query: " . $mysqli->error;
+                        }
                         ?>
                         <div class="container">
                             <div class="col-sm-7 smallcard">
@@ -75,8 +99,9 @@ if (!empty($_POST["NewEmail"])      &&
                         </head>
                         <body>
                         <h1>Verify email</h1>
+                        <p>'.$Firstname.' '.$Lastname.'</p>
                         <p>Click on the link below to verify your email.</p>
-                        <a href="https://train.4260.nl/php/verify.php?ID='.$ID.'">Verify</a>
+                        <a href="https://train.4260.nl/php/verify.php?ID='.$ID.'&h='.$hash.'">Verify</a>
                         <p>This email is a conformation that a account has been made with this email-adress.</p>
                         </body>
                         </html>
