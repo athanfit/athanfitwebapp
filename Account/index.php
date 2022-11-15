@@ -7,11 +7,14 @@ include '../includes/navbar.php';
 $ID = $_SESSION['ID'];
 $sql = "SELECT * FROM Users WHERE UserID = '$ID'";
 $result=$mysqli->query($sql); 
-$fetchUserData = $result->fetch_assoc(); 
-$Firstname = $fetchUserData['UserFirstname'];
-$Lastname = $fetchUserData['UserLastname'];
-$Email = $fetchUserData['UserEmail'];
-$Verified = $fetchUserData['verified'];
+$user = $result->fetch_assoc(); 
+$sql = "SELECT * FROM Verify WHERE UserID = '$ID'";
+$result=$mysqli->query($sql); 
+$verify = $result->fetch_assoc(); 
+$Firstname = $user['UserFirstname'];
+$Lastname = $user['UserLastname'];
+$Email = $user['UserEmail'];
+$Verified = $verify['Verified'];
 ?>
 <div class="container">
     <div class="col-sm-7 smallcard">
@@ -29,9 +32,20 @@ $Verified = $fetchUserData['verified'];
                     <li class="list-group-item">Lastname: <?= $Lastname ?></li>
                     <li class="list-group-item">Email: <?= $Email ?></li>
                     <li class="list-group-item">ID: <?= $ID ?></li>
+                    <li class="list-group-item">Verified: <?= $Verified ?></li>
                 </ul>
             </div>
         </div>
+        <?php
+        if ($Verified == '0'){
+            ?>
+            <div>
+                <div class="alert alert-warning" role="alert">
+                    Verify your email.
+                </div>
+            <?php
+        }
+        ?>
     </div>
 </div>
 <?php

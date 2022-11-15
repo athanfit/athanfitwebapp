@@ -48,12 +48,16 @@ require 'includes/config.php';
                                     $resultaat = mysqli_query($mysqli, $query);
                                     if (mysqli_num_rows($resultaat) > 0)
                                     {
-                                        // done
                                         $user = mysqli_fetch_array($resultaat);
+                                        $ID = $user['UserID'];
+                                        $query = "SELECT * FROM `Verify` WHERE UserID = '$ID'";
+                                        $resultaat = mysqli_query($mysqli, $query);
+                                        $Verified = mysqli_fetch_array($resultaat);
+                                        // done
                                         $_SESSION['ID'] = $user['UserID'];
                                         $_SESSION['email'] = $user['UserEmail'];
                                         $_SESSION['Firstname'] = $user['UserFirstname'];
-                                        $_SESSION['verified'] = $user['verified'];
+                                        $_SESSION['verified'] = $Verified['Verified'];
                                         header("Refresh:0");
                                     }
                                     else

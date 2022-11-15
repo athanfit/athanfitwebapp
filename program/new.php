@@ -9,7 +9,7 @@ $_SESSION['token'] = $Token;
 if (isset($_SESSION['ID'])   &&
     isset($_SESSION['email'])) 
     {
-    if ($_SESSION['verified'] == "verified")
+    if ($_SESSION['verified'] == "1")
         {
 ?>
     <div class="container">
