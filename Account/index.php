@@ -4,6 +4,8 @@ require '../includes/check.php';
 require '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
+$Token = bin2hex(openssl_random_pseudo_bytes(32));
+$_SESSION['token'] = $Token;
 $ID = $_SESSION['ID'];
 $sql = "SELECT * FROM Users WHERE UserID = '$ID'";
 $result=$mysqli->query($sql); 
@@ -31,8 +33,6 @@ $Verified = $verify['Verified'];
                     <li class="list-group-item">Fristname: <?= $Firstname ?></li>
                     <li class="list-group-item">Lastname: <?= $Lastname ?></li>
                     <li class="list-group-item">Email: <?= $Email ?></li>
-                    <li class="list-group-item">ID: <?= $ID ?></li>
-                    <li class="list-group-item">Verified: <?= $Verified ?></li>
                 </ul>
             </div>
         </div>
@@ -41,7 +41,9 @@ $Verified = $verify['Verified'];
             ?>
             <div>
                 <div class="alert alert-warning" role="alert">
-                    Verify your email.
+                    <p>You need to verify your email.</p>
+                    <p>If your link has been expired, click below to recieve a new link in your email.</p>
+                    <a class="btn btn-primary" href="verify.php?ID=<?= $ID ?>&h=<?= $Token ?>" role="button">New link</a>
                 </div>
             <?php
         }
