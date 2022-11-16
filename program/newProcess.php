@@ -37,6 +37,7 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                 $stmt->bind_param('ssssss', $ID, $title, $description, $dbExercise, $today, $userID);
                 if ($stmt->execute()) {
                     ?><script>console.log("Done, data to DB");</script><?php
+                    header("location:./");
                 } else {
                     echo "Something went wrong!";
                 }

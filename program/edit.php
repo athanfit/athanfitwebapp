@@ -4,6 +4,8 @@ $title = "Program";
 require '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
+$Token = bin2hex(openssl_random_pseudo_bytes(32));
+$_SESSION['token'] = $Token;
 $userID = $_SESSION["ID"];
 if (isset($_SESSION['ID'])   &&
     isset($_SESSION['email'])) 
@@ -32,7 +34,7 @@ if (isset($_SESSION['ID'])   &&
             <div class="card">
                 <h5 class="card-header">Edit program</h5>
                 <div class="card-body">
-                    <form action="nieuwProcess.php" method="post">
+                    <form action="editProcess.php?ID=<?= $id ?>" method="post">
                         <div class="form-group">
                             <label for="title">Title:</label>
                             <input type="text" value="<?= $title ?>" class="form-control" name="title" id="title" maxlength="70">
@@ -55,16 +57,24 @@ if (isset($_SESSION['ID'])   &&
                         }
                         ?>
                         <input type="hidden" name="csrfToken" value="<?= $Token ?>">
-                        <button type="button" class="btn btn-secondary extraBtn" onClick="addInput()">Add exersice</button>
                         <button type="submit" class="btn btn-primary btn-block SubmitBtn">Submit</button>
+                        <button type="button" class="btn btn-danger extraBtn SubmitBtn" onClick="myFunction()">Delete</button>
+                        <button type="button" class="btn btn-secondary extraBtn SubmitBtn" onClick="addInput()">Add exersice</button>
                     </form>
                 </div>
             </div>
             <div class="d-grid gap-2">
-                <a href="./" class="btn bigBtn btn-primary" type="button">Go back</a>
+                <a href="./" class="btn bigBtn btn-outline-primary" type="button">Go back</a>
             </div>
         </div>
     </div>
+    <script>
+    function myFunction() {
+        if (confirm("Are u sure u want to delete this?")) {
+            window.location.href = "delete.php?ID=<?= $id ?>&h=<?= $Token ?>";
+        }
+    }
+    </script>
 <?php
         } else {
             header("location:../");

@@ -9,7 +9,7 @@ function addInput(value){
     } else {
         var exercise = "";
     }
-    newdiv.innerHTML = "Exersice" + "<div class='form-group'><input value='"+exercise+"' type='text' class='form-control' name='Exersice"+counter+"' id='"+counter+"'><button type='button' class='btn btn-outline-secondary smallBtn' onClick='removeInput("+counter+");'> - </button></div>";
+    newdiv.innerHTML = "Exersice" + "<div class='form-group'><input value='"+exercise+"' type='text' class='form-control' name='Exersice"+counter+"' id='"+counter+"'><button type='button' class='btn btn-outline-secondary smallBtn' onClick='removeInput("+counter+");'>Remove</button></div>";
     document.getElementById('exersices').appendChild(newdiv);
     counter++;
 }

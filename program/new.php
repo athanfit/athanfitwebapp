@@ -32,13 +32,13 @@ if (isset($_SESSION['ID'])   &&
                             <small id="ExersiceHelp" class="form-text text-muted">Enter here the name of the exersice and if wanted reps and sets.</small>
                         </div>
                         <input type="hidden" name="csrfToken" value="<?= $Token ?>">
-                        <button type="button" class="btn btn-secondary extraBtn" onClick="addInput()">Add exersice</button>
                         <button type="submit" class="btn btn-primary btn-block SubmitBtn">Submit</button>
+                        <button type="button" class="btn btn-secondary extraBtn SubmitBtn" onClick="addInput()">Add exersice</button>
                     </form>
                 </div>
             </div>
             <div class="d-grid gap-2">
-                <a href="./" class="btn bigBtn btn-primary" type="button">Go back</a>
+                <a href="./" class="btn bigBtn btn-outline-primary" type="button">Go back</a>
             </div>
         </div>
     </div>

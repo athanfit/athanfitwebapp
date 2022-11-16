@@ -4,10 +4,12 @@ $title = "Aanleden";
 include '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
+$id = $_GET['ID'];
+echo $id;
 $userID = $_SESSION["ID"];
 $exercise = array();
 $today = date("Y-m-d");
-if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://train.4260.nl/program/edit.php")
+if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://train.4260.nl/program/edit.php?ID=$id")
 {
     if (!empty($_POST['csrfToken'])){
         if (isset($_SESSION["token"]) && $_SESSION["token"] == $_POST["csrfToken"]) 
@@ -25,18 +27,12 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
             }
             print_r($exercise)."<br>";
             $dbExercise = serialize($exercise);
-            do {
-                $permitted_chars = '1234567890abcdeABCDE1234567890';
-                $ID = substr(str_shuffle($permitted_chars), 0, 12);
-                $result = mysqli_query($mysqli, "SELECT ID FROM `Programs` WHERE ID = '$ID'");
-                $rows = mysqli_num_rows($result);
-            }
-            while($rows > 1);
-            $sql = "UPDATE `Programs` (ID, `Title`, `Description`, `Program`, `Date`, `UserID`) VALUES  (?, ?, ?, ?, ?, ?)";
+            $sql = "UPDATE `Programs` SET `Title`=? , `Description`=? , `Program`=? , `Date`=? WHERE ID=?";
             if ($stmt = $mysqli->prepare($sql)) {
-                $stmt->bind_param('ssssss', $ID, $title, $description, $dbExercise, $today, $userID);
+                $stmt->bind_param('sssss', $title, $description, $dbExercise, $today, $id);
                 if ($stmt->execute()) {
                     ?><script>console.log("Done, data to DB");</script><?php
+                    header("location:./");
                 } else {
                     echo "Something went wrong!";
                 }
