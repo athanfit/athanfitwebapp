@@ -10,17 +10,22 @@ if (isset($_SESSION['ID'])   &&
     {
     if ($_SESSION['verified'] == "1")
         {
-            $sql = "DELETE FROM `Programs` WHERE ID=?";
-            if ($stmt = $mysqli->prepare($sql)) {
-                $stmt->bind_param('s', $id);
-                if ($stmt->execute()) {
-                    ?><script>console.log("Done, data to DB");</script><?php
-                    header("location:./");
-                } else {
-                    echo "Something went wrong!";
+            if (!empty($token)){
+                if (isset($_SESSION["token"]) && $_SESSION["token"] == $token) 
+                {
+                $sql = "DELETE FROM `Programs` WHERE ID=?";
+                if ($stmt = $mysqli->prepare($sql)) {
+                    $stmt->bind_param('s', $id);
+                    if ($stmt->execute()) {
+                        ?><script>console.log("Done, data to DB");</script><?php
+                        header("location:./");
+                    } else {
+                        echo "Something went wrong!";
+                    }
+                    } else {
+                        echo "zit een fout in de query: " . $mysqli->error;
+                    }
                 }
-                } else {
-                    echo "zit een fout in de query: " . $mysqli->error;
-                }
+            }
         }
     }
