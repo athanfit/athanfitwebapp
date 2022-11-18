@@ -4,7 +4,7 @@ require '../includes/check.php';
 require '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
-$Token = bin2hex(openssl_random_pseudo_bytes(32));
+$Token = bin2hex(openssl_random_pseudo_bytes(12));
 $_SESSION['token'] = $Token;
 $ID = $_SESSION['ID'];
 $sql = "SELECT * FROM Users WHERE UserID = '$ID'";
@@ -27,15 +27,6 @@ $Verified = $verify['Verified'];
             <p class="card-text">Find here the info of your account and to update info of your account.</p>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">Fristname: <?= $Firstname ?></li>
-                    <li class="list-group-item">Lastname: <?= $Lastname ?></li>
-                    <li class="list-group-item">Email: <?= $Email ?></li>
-                </ul>
-            </div>
-        </div>
         <?php
         if ($Verified == '0'){
             ?>
@@ -48,6 +39,15 @@ $Verified = $verify['Verified'];
             <?php
         }
         ?>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Fristname: <?= $Firstname ?></li>
+                    <li class="list-group-item">Lastname: <?= $Lastname ?></li>
+                    <li class="list-group-item">Email: <?= $Email ?></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <?php
