@@ -13,12 +13,12 @@ $today = date("Y-m-d");
 if (!isset($_SESSION['ID'])   &&
     !isset($_SESSION['email'])) 
 {
-    echo "Something gone wrong";
+    echo "Something gone wrong.";
     exit();
 }
 if ($userID != $_SESSION['ID'])
 {
-    echo "Something gone wrong";
+    echo "Something gone wrong.";
     exit;
 }
 $sql = "UPDATE `Verify` SET `Hash`=? , `Date`=?  WHERE UserID=?"; // SQL with parameters
