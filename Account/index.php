@@ -44,7 +44,7 @@ $Verified = $verify['Verified'];
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item">Fristname: <?= $Firstname ?></li>
-                    <li class="list-group-item">Lastname: <?= $Lastname ?></li>
+                    <li class="list-group-item">Surname: <?= $Lastname ?></li>
                     <li class="list-group-item">Email: <?= $Email ?></li>
                 </ul>
             </div>

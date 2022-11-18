@@ -21,7 +21,9 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
             if (filter_var($_POST["Email"], FILTER_VALIDATE_EMAIL)){
                 $email = $_POST['Email'];
                 do {
-                    $ID = rand(10000000,99999999);
+                    //$ID = rand(10000000,99999999);
+                    $permitted_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_~';
+                    $ID = substr(str_shuffle($permitted_chars), 0, 18);
                     $result = mysqli_query($mysqli, "SELECT ID FROM `Password` WHERE ID = '$ID'");
                     $rows = mysqli_num_rows($result);
                 } while($rows > 1);
@@ -36,7 +38,7 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                         $hash = substr(str_shuffle($permitted_chars), 0, 26);
                         $sql = "INSERT INTO Password (ID, UserID, `Hash`, `Date`, `Time`) VALUES  (?, ?, ?, ?, ?)";
                         if ($stmt = $mysqli->prepare($sql)) {
-                            $stmt->bind_param('issss', $ID, $userID, $hash, $today, $time);
+                            $stmt->bind_param('sssss', $ID, $userID, $hash, $today, $time);
                             if ($stmt->execute()) {
                                 ?><script>console.log("Done, data to DB");</script><?php
                             } else {
