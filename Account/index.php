@@ -4,8 +4,9 @@ require '../includes/check.php';
 require '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
-$Token = bin2hex(openssl_random_pseudo_bytes(12));
-$_SESSION['token'] = $Token;
+$permitted_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_~';
+$hash = substr(str_shuffle($permitted_chars), 0, 26);
+$_SESSION['hash'] = $hash;
 $ID = $_SESSION['ID'];
 $sql = "SELECT * FROM Users WHERE UserID = '$ID'";
 $result=$mysqli->query($sql); 
@@ -34,7 +35,7 @@ $Verified = $verify['Verified'];
                 <div class="alert alert-warning" role="alert">
                     <p>You need to verify your email.</p>
                     <p>If your link has been expired, click below to recieve a new link in your email.</p>
-                    <a class="btn btn-primary" href="verify.php?ID=<?= $ID ?>&h=<?= $Token ?>" role="button">New link</a>
+                    <a class="btn btn-primary" href="verify.php?ID=<?= $ID ?>&h=<?= $hash ?>" role="button">New link</a>
                 </div>
             <?php
         }
