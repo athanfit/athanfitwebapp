@@ -30,6 +30,28 @@ if (!empty($_POST["NewEmail"])      &&
                 // password hash van php zelf !!!!!!
                 // $passwordHashed = password_hash($TextPassword, PASSWORD_DEFAULT);
 
+                $RESemail = $mysqli -> real_escape_string($email);
+                //email to lowercase
+                $Email = strtolower($RESemail);
+                // check if email is already used
+                $sql = "SELECT * FROM Users WHERE UserEmail = '$Email'";
+                $result = $mysqli->query($sql);
+                if ($result->num_rows > 0) {
+                //
+                ?>
+                <div class="container">
+                    <div class="col-sm-7 smallcard">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Email is already in use.</h5>
+                                <a href="../signup.php" class="card-link">Go back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                exit;
+                }
                 // if(password_verify($TextPassword, $dbPassword)){
                 //     echo "Succes";
                 // }
@@ -39,6 +61,7 @@ if (!empty($_POST["NewEmail"])      &&
                 $Lastname = ucwords(strtolower($Lastname));
                 //email to lowercase
                 $Email = strtolower($email);
+
                 // create random gerareted ID
                 do {
                     $permitted_chars = '1234567890abcdeABCDE1234567890';
