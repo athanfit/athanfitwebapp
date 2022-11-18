@@ -39,7 +39,9 @@ require 'includes/config.php';
                                 {
                                 if (filter_var($_POST["Email"], FILTER_VALIDATE_EMAIL))
                                 {
-                                    $Email = $mysqli -> real_escape_string($_POST['Email']);
+                                    $email = $mysqli -> real_escape_string($_POST['Email']);
+                                    //email to lowercase
+                                    $Email = strtolower($email);
                                     $TextPassword = $mysqli -> real_escape_string($_POST['Password']);
                                     $saltPassword = $TextPassword . "PannenkoekenStraat";
                                     $Password = hash('sha256', $saltPassword);

@@ -20,7 +20,7 @@ if (!empty($_POST["NewEmail"])      &&
             if (filter_var($_POST["NewEmail"], FILTER_VALIDATE_EMAIL)) {
                 // Has an valid email
                 ?> <script>console.log("Has an valid email: <?= $_POST["NewEmail"] ?>");</script> <?php // haal als werkt weg dat hij de mail stuurd in log
-                $Email =        $_POST['NewEmail'];
+                $email =        $_POST['NewEmail'];
                 $Firstname =    $_POST['NewFirstname'];
                 $Lastname =     $_POST['NewLastname'];
                 $TextPassword = $_POST['NewPassword'];
@@ -37,7 +37,8 @@ if (!empty($_POST["NewEmail"])      &&
                 // The firstname and lastname to all lowercase, and every first charachter of each word in the string to uppercase
                 $Firstname = ucwords(strtolower($Firstname));
                 $Lastname = ucwords(strtolower($Lastname));
-                
+                //email to lowercase
+                $Email = strtolower($email);
                 // create random gerareted ID
                 do {
                     $permitted_chars = '1234567890abcdeABCDE1234567890';
