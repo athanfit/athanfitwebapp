@@ -1,8 +1,8 @@
 <?php
 // database logingegevens
 $db_hostename = 'localhost'; // of '127.0.0.1'
-$db_username = '4260nl';
-$db_password = '0SRFa0wP';
+$db_username = '';
+$db_password = '';
 $db_database = '4260nl_train';
 
 $mysqli = mysqli_connect($db_hostename, $db_username, $db_password, $db_database);
