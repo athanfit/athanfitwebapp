@@ -57,6 +57,8 @@ if (isset($_SESSION['ID'])   &&
             </div>
         </div>
     </div>
+    <!-- <script src="keydown.js"></script>    -->
+
 <?php
         } else {
             header("location:../");
@@ -64,5 +66,6 @@ if (isset($_SESSION['ID'])   &&
     } else {
         header("location:../");
     }
+include '../js/keyControls/programs.html';
 include '../includes/foot.php';
 ?>

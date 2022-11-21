@@ -82,5 +82,6 @@ if (isset($_SESSION['ID'])   &&
     } else {
         header("location:../");
     }
+include '../js/keyControls/programForm.html';
 include '../includes/foot.php';
 ?>
