@@ -20,16 +20,14 @@ if (!empty($_POST["NewEmail"])      &&
             if (filter_var($_POST["NewEmail"], FILTER_VALIDATE_EMAIL)) {
                 // Has an valid email
                 ?> <script>console.log("Has an valid email: <?= $_POST["NewEmail"] ?>");</script> <?php // haal als werkt weg dat hij de mail stuurd in log
-                $email =        $_POST['NewEmail'];
+                $inEmail =        $_POST['NewEmail'];
                 $Firstname =    $_POST['NewFirstname'];
                 $Lastname =     $_POST['NewLastname'];
-                $TextPassword = $_POST['NewPassword'];
+                $password = $_POST['NewPassword'];
                 // add salt to the password
-                $saltPassword = $TextPassword . "PannenkoekenStraat";
-                $Password = hash('sha256', $saltPassword);
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 // password hash van php zelf !!!!!!
                 // $passwordHashed = password_hash($TextPassword, PASSWORD_DEFAULT);
-
                 $RESemail = $mysqli -> real_escape_string($email);
                 //email to lowercase
                 $Email = strtolower($RESemail);
@@ -60,8 +58,7 @@ if (!empty($_POST["NewEmail"])      &&
                 $Firstname = ucwords(strtolower($Firstname));
                 $Lastname = ucwords(strtolower($Lastname));
                 //email to lowercase
-                $Email = strtolower($email);
-
+                $email = strtolower($inEmail);
                 // create random gerareted ID
                 do {
                     $permitted_chars = '1234567890abcdeABCDE1234567890';
@@ -73,7 +70,7 @@ if (!empty($_POST["NewEmail"])      &&
                 ?> <script>console.log("Data: <?= $ID ?>");</script> <?php
                 $sqlUser = "INSERT INTO Users (UserID, UserFirstname, UserLastname, UserPassword, UserEmail, `Date`) VALUES  (?, ?, ?, ?, ?, ?)";
                 if ($stmt = $mysqli->prepare($sqlUser)) {
-                    $stmt->bind_param('ssssss', $ID, $Firstname, $Lastname, $Password, $Email, $today);
+                    $stmt->bind_param('ssssss', $ID, $Firstname, $Lastname, $hashedPassword, $email, $today);
                     if ($stmt->execute()) {
                         // ID for verify
                         do {
