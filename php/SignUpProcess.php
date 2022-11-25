@@ -28,7 +28,7 @@ if (!empty($_POST["NewEmail"])      &&
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 // password hash van php zelf !!!!!!
                 // $passwordHashed = password_hash($TextPassword, PASSWORD_DEFAULT);
-                $RESemail = $mysqli -> real_escape_string($email);
+                $RESemail = $mysqli -> real_escape_string($inEmail);
                 //email to lowercase
                 $Email = strtolower($RESemail);
                 // check if email is already used
@@ -58,7 +58,7 @@ if (!empty($_POST["NewEmail"])      &&
                 $Firstname = ucwords(strtolower($Firstname));
                 $Lastname = ucwords(strtolower($Lastname));
                 //email to lowercase
-                $email = strtolower($inEmail);
+                $email = strtolower($RESemail);
                 // create random gerareted ID
                 do {
                     $permitted_chars = '1234567890abcdeABCDE1234567890';
