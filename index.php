@@ -42,25 +42,25 @@ require 'includes/config.php';
                                     $email = $mysqli -> real_escape_string($_POST['Email']);
                                     //email to lowercase
                                     $Email = strtolower($email);
-                                    $TextPassword = $mysqli -> real_escape_string($_POST['Password']);
-                                    $saltPassword = $TextPassword . "PannenkoekenStraat";
-                                    $Password = hash('sha256', $saltPassword);
-                                    ?><script>console.log("hash: <?= $Password ?>");</script><?php
-                                    $query = "SELECT * FROM Users WHERE UserEmail = '$Email' AND UserPassword = '$Password'";
+                                    $password = $mysqli -> real_escape_string($_POST['Password']);
+                                    $query = "SELECT * FROM Users WHERE UserEmail = '$Email'";
                                     $resultaat = mysqli_query($mysqli, $query);
                                     if (mysqli_num_rows($resultaat) > 0)
                                     {
                                         $user = mysqli_fetch_array($resultaat);
-                                        $ID = $user['UserID'];
-                                        $query = "SELECT * FROM `Verify` WHERE UserID = '$ID'";
-                                        $resultaat = mysqli_query($mysqli, $query);
-                                        $Verified = mysqli_fetch_array($resultaat);
-                                        // done
-                                        $_SESSION['ID'] = $user['UserID'];
-                                        $_SESSION['email'] = $user['UserEmail'];
-                                        $_SESSION['Firstname'] = $user['UserFirstname'];
-                                        $_SESSION['verified'] = $Verified['Verified'];
-                                        header("Refresh:0");
+                                        $DBpassword = $user['UserPassword'];
+                                        if(password_verify($password, $DBpassword)) {
+                                            $ID = $user['UserID'];
+                                            $query = "SELECT * FROM `Verify` WHERE UserID = '$ID'";
+                                            $resultaat = mysqli_query($mysqli, $query);
+                                            $Verified = mysqli_fetch_array($resultaat);
+                                            // done
+                                            $_SESSION['ID'] = $user['UserID'];
+                                            $_SESSION['email'] = $user['UserEmail'];
+                                            $_SESSION['Firstname'] = $user['UserFirstname'];
+                                            $_SESSION['verified'] = $Verified['Verified'];
+                                            header("Refresh:0");
+                                        }
                                     }
                                     else
                                     {
