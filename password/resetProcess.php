@@ -21,10 +21,9 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                     $fetchUserData = $result->fetch_assoc(); 
                     $date = $fetchUserData['Date'];
                     if ($date == $today){
-                        $TextPassword = $_POST['Password'];
-                        $saltPassword = $TextPassword . "PannenkoekenStraat";
-                        $Password = hash('sha256', $saltPassword);
-                        $sql = "UPDATE Users SET UserPassword='$Password' WHERE UserID='$userID'";
+                        $password = $mysqli -> real_escape_string($_POST['Password']);
+                        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                        $sql = "UPDATE Users SET UserPassword='$hashedPassword' WHERE UserID='$userID'";
                         if ($mysqli->query($sql) === TRUE) {
                             ?><script>console.log("Record updated successfully.");</script><?php
                         } else {

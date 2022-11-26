@@ -21,6 +21,23 @@ $ID = $SeVerify["ID"];
 $UserID = $SeVerify["UserID"];
 $Hash = $SeVerify["Hash"];
 $Date = $SeVerify["Date"];
+if ($Date > $today){
+    ?>
+    <div class="container">
+        <div class="col-sm-7 smallcard">
+            <div class="card">
+                <h5 class="card-header">Link expired</h5>
+                <div class="card-body">
+                    <p class="card-text">The link u used has been expired.</p>
+                    <p class="card-text">Login, go to the page account and request a new link.</p>
+                    <a href="../" class="card-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    exit();
+}
 $DateVerified = $SeVerify["DateVerified"];
 $Verified = $SeVerify["Verified"];
 if ($Verified == '0')
@@ -35,6 +52,7 @@ if ($Verified == '0')
                     <h5 class="card-header">Verified</h5>
                     <div class="card-body">
                         <p class="card-text">Email-adress has been verified.</p>
+                        <p class="card-text">For now, if you are logged in on an other page. Logout and back in so you can use the appblication.</p>
                         <a href="../" class="card-link">Login</a>
                     </div>
                 </div>
