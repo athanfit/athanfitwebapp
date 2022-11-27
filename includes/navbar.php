@@ -8,10 +8,15 @@
         <ul class="navbar-nav">
             <?php
             if (isset($_SESSION["ID"])){
+            if ($_SESSION['verified'] == "1")
+            {
             ?>
             <li class="nav-item">
                 <a class="nav-link" href="../program/">Program</a>
             </li>
+            <?php
+            }
+            ?>
             <li class="nav-item">
                 <a class="nav-link" href="../Account/">Account</a>
             </li>
