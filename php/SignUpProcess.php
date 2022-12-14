@@ -110,7 +110,7 @@ if (!empty($_POST["NewEmail"])      &&
                         </div>
                         <?php
                         $to = $Email;
-                        $subject = "Sign-UP - 4260train";
+                        $subject = "Sign-UP - athanfit";
                         $message = '
                         <!DOCTYPE html>
                         <html>
@@ -122,14 +122,14 @@ if (!empty($_POST["NewEmail"])      &&
                         <h1>Verify email</h1>
                         <p>'.$Firstname.' '.$Lastname.'</p>
                         <p>Click on the link below to verify your email.</p>
-                        <a href="https://train.4260.nl/php/verify.php?ID='.$ID.'&h='.$hash.'">Verify</a>
+                        <a href="https://athanfit.com/php/verify.php?ID='.$ID.'&h='.$hash.'">Verify</a>
                         <p>This email is a conformation that a account has been made with this email-adress.</p>
                         </body>
                         </html>
                         ';
                         $headers = "MIME-Version: 1.0" . "\r\n";
                         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                        $headers .= 'From: <noreply@4260.nl>' . "\r\n";
+                        $headers .= 'From: <noreply@athanfit.com>' . "\r\n";
                         mail($to,$subject,$message,$headers);
                     } else {
                         echo "is mislukt";

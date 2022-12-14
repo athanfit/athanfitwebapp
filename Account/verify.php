@@ -42,7 +42,7 @@ if ($stmt = $mysqli->prepare($sql)) {
         </div>
         <?php
         $to = $email;
-        $subject = "Verify - 4260train";
+        $subject = "Verify - athanfit";
         $message = '
         <!DOCTYPE html>
         <html>
@@ -53,14 +53,14 @@ if ($stmt = $mysqli->prepare($sql)) {
         <body>
         <h1>Verify email</h1>
         <p>Click on the link below to verify your email.</p>
-        <a href="https://train.4260.nl/php/verify.php?ID='.$userIDsession.'&h='.$hash.'">Verify</a>
+        <a href="https://athanfit.com/php/verify.php?ID='.$userIDsession.'&h='.$hash.'">Verify</a>
         <p>This mail is because an account with this email has requested a new verify link.</p>
         </body>
         </html>
         ';
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= 'From: <noreply@4260.nl>' . "\r\n";
+        $headers .= 'From: <noreply@athanfit.com>' . "\r\n";
         mail($to,$subject,$message,$headers);
     } else {
         echo "Something went wrong!";

@@ -8,7 +8,7 @@ $today = date("Y-m-d");
 //the get parameters:
 $userID = $_GET['ID']; 
 $hash = $_GET['h'];
-if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://train.4260.nl/password/reset.php?ID=$userID&h=$hash") 
+if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://athanfit.com/password/reset.php?ID=$userID&h=$hash") 
     {
         if (!empty($_POST['Password'])     &&
             !empty($_POST["csrfToken"])) 

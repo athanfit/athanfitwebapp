@@ -9,7 +9,7 @@ echo $id;
 $userID = $_SESSION["ID"];
 $exercise = array();
 $today = date("Y-m-d");
-if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://train.4260.nl/program/edit.php?ID=$id")
+if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://athanfit.com/program/edit.php?ID=$id")
 {
     if (!empty($_POST['csrfToken'])){
         if (isset($_SESSION["token"]) && $_SESSION["token"] == $_POST["csrfToken"]) 

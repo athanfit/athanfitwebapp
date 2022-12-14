@@ -12,7 +12,7 @@ $time = date('H:i:s', strtotime('+1 hours', strtotime($time1)));
     <div class="col-sm-7 smallcard">
 <?PHP
 // above all includes
-if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://train.4260.nl/password/")
+if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://athanfit.com/password/")
     {
     if (!empty($_POST['Email'])     &&
         !empty($_POST["csrfToken"]))
@@ -49,7 +49,7 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                         }
                         $mysqli->close();
                         $to = $email;
-                        $subject = "Password reset - 4260train";
+                        $subject = "Password reset - athanfit";
                         $message = '
                         <!DOCTYPE html>
                         <html>
@@ -60,7 +60,7 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                         <body>
                         <h1>Password reset</h1>
                         <p>Click on the link below to be redirected to the site so your able to reset your password.</p>
-                        <a href="https://train.4260.nl/password/reset.php?ID='.$userID.'&h='.$hash.'">Reset</a>
+                        <a href="https://athanfit.com/password/reset.php?ID='.$userID.'&h='.$hash.'">Reset</a>
                         <p>With this email has a request been made to reset the password of your account with train.4260.</p>
                         <p>The link can be used on the same day as you requested the reset.</p>
                         </body>
@@ -68,7 +68,7 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                         ';
                         $headers = "MIME-Version: 1.0" . "\r\n";
                         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                        $headers .= 'From: <noreply@4260.nl>' . "\r\n";
+                        $headers .= 'From: <noreply@athanfit.com>' . "\r\n";
                         mail($to,$subject,$message,$headers);
                     }
                 }
