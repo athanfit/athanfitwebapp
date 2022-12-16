@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = "Program";
+$title = "Program edit";
 require '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';

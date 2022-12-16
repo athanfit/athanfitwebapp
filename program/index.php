@@ -43,7 +43,7 @@ if (isset($_SESSION['ID'])   &&
                             <div class="list-group">
                                 <?php
                                 foreach ($program as $value) {
-                                    ?><a href="#" class="list-group-item list-group-item-action"><?= $value ?></a><?php
+                                    ?><a href="../workout/new.php?w=<?= $value ?>" class="list-group-item list-group-item-action"><?= $value ?></a><?php
                                 }
                                 ?>
                             </div>

@@ -12,6 +12,9 @@
             {
             ?>
             <li class="nav-item">
+                <a class="nav-link" href="../workout/">Workouts</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../program/">Program</a>
             </li>
             <?php
