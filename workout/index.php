@@ -25,13 +25,13 @@ if (isset($_SESSION['ID'])   &&
             </div>
             <div class="col-sm-8">
                 <?php
-                $query = "SELECT DISTINCT(date) FROM `Exersice`";
+                $query = "SELECT DISTINCT(date) FROM `Exersice` WHERE userID='$userID'";
                 $result = mysqli_query($mysqli, $query);
                 while ($rowDate = mysqli_fetch_array($result))
                 {
                     $date = $rowDate['date'];
                     $dateFor = date("D d-M", strtotime($date));
-                    $query = "SELECT * FROM `Exersice` WHERE `date`='$date'";
+                    $query = "SELECT * FROM `Exersice` WHERE `date`='$date' AND userID='$userID'";
                     $resultEx = mysqli_query($mysqli, $query);
                     
                 ?>
