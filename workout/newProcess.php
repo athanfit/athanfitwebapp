@@ -22,7 +22,7 @@ echo $_SERVER["HTTP_REFERER"];
             $unit = $_POST['unit'];
             do {
                 $permitted_chars = '1234567890abcdeABCDE1234567890';
-                $ID = substr(str_shuffle($permitted_chars), 0, 12);
+                $ID = substr(str_shuffle($permitted_chars), 0, 18);
                 $result = mysqli_query($mysqli, "SELECT ID FROM `Exersice` WHERE ID = '$ID'");
                 $rows = mysqli_num_rows($result);
             }

@@ -24,11 +24,40 @@ if (isset($_SESSION['ID'])   &&
                 </div>
             </div>
             <div class="col-sm-8">
+                <?php
+                $query = "SELECT DISTINCT(date) FROM `Exersice`";
+                $result = mysqli_query($mysqli, $query);
+                while ($rowDate = mysqli_fetch_array($result))
+                {
+                    $date = $rowDate['date'];
+                    $dateFor = date("D d-M", strtotime($date));
+                    $query = "SELECT * FROM `Exersice` WHERE `date`='$date'";
+                    $resultEx = mysqli_query($mysqli, $query);
+                    
+                ?>
                 <div class="card">
                     <div class="card-body">
-                        komt nog
+                        <?= $dateFor ?>
+                        <hr>
+                        <table class="table">
+                        <?php
+                        while ($rowEx = mysqli_fetch_array($resultEx))
+                        {
+                        ?>
+                        <tr>
+                            <td><?= $rowEx['name'] ?></td>
+                            <td><?= $rowEx['amount'] . $rowEx['unit'] ?></td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                        </table>
                     </div>
                 </div>
+                <?php
+                    
+                }
+                ?>
             </div>
         </div>
     </div>

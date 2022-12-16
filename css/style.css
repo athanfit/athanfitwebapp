@@ -38,3 +38,6 @@
 .alert{
     display: block;
 }
+.workoutUl{
+    margin-top: 0;
+}
