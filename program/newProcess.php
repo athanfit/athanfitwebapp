@@ -14,7 +14,9 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
         {
             $title = $_POST['title'];
             $description = $_POST['description'];
+            $unit = $_POST['unit'];
             $data = $_POST;
+            array_shift($data);
             array_shift($data);
             array_shift($data);
             array_pop($data);
@@ -32,9 +34,9 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
                 $rows = mysqli_num_rows($result);
             }
             while($rows > 1);
-            $sql = "INSERT INTO `Programs` (ID, `Title`, `Description`, `Program`, `Date`, `UserID`) VALUES  (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `Programs` (ID, `Title`, `Description`, `Program`, `unit`, `Date`, `UserID`) VALUES  (?, ?, ?, ?, ?, ?, ?)";
             if ($stmt = $mysqli->prepare($sql)) {
-                $stmt->bind_param('ssssss', $ID, $title, $description, $dbExercise, $today, $userID);
+                $stmt->bind_param('sssssss', $ID, $title, $description, $dbExercise, $unit, $today, $userID);
                 if ($stmt->execute()) {
                     ?><script>console.log("Done, data to DB");</script><?php
                     header("location:./");

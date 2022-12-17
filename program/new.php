@@ -20,17 +20,23 @@ if (isset($_SESSION['ID'])   &&
                     <form action="newProcess.php" method="post">
                         <div class="form-group">
                             <label for="title">Title:</label>
-                            <input type="text" class="form-control" name="title" id="title" maxlength="70">
+                            <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp" maxlength="70">
+                            <small id="titleHelp" class="form-text text-muted">Keep title of the program short. If more text needed, put in the description.</small>
                         </div>
                         <div class="form-group">
                             <label for="description">Description:</label>
                             <input type="text" class="form-control" name="description" id="description" maxlength="255">
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">Unit:</label>
+                            <input type="text" class="form-control" name="unit" id="unit" placeholder="KG/KM/M" maxlength="5">
                         </div>
                         <div class="form-group" id="exersices">
                             <label for="Exersice1">Exersice:*</label>
                             <input type="text" class="form-control" name="Exersice" id="Exersice" aria-describedby="ExersiceHelp" placeholder="Squat 6-8reps 3sets">
                             <small id="ExersiceHelp" class="form-text text-muted">Enter here the name of the exersice and if wanted reps and sets.</small>
                         </div>
+                        
                         <input type="hidden" name="csrfToken" value="<?= $Token ?>">
                         <button type="submit" class="btn btn-primary btn-block SubmitBtn">Submit</button>
                         <button type="button" class="btn btn-secondary extraBtn SubmitBtn" onClick="addInput()">Add exersice</button>
@@ -49,6 +55,5 @@ if (isset($_SESSION['ID'])   &&
     } else {
         header("location:../");
     }
-include '../js/keyControls/programForm.html';
 include '../includes/foot.php';
 ?>
