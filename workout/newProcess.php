@@ -8,8 +8,10 @@ $userID = $_SESSION["ID"];
 $today = date("Y-m-d");
 $todayU = time();
 $workoutGet = $_GET['w'];
-echo $workoutGet . "<br>";
-echo $_SERVER["HTTP_REFERER"];
+$programID = $_GET['ID'];
+if (!$programID){
+    $programID = NULL;
+}
 // HTTP previous page
 // if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://athanfit.com/workout/new.php?w=$workoutGet")
 // {
@@ -27,9 +29,9 @@ echo $_SERVER["HTTP_REFERER"];
                 $rows = mysqli_num_rows($result);
             }
             while($rows > 1);
-            $sql = "INSERT INTO `Exersice` (ID, `name`, `amount`, `unit`, `userID`, `date`, `unixDate`) VALUES  (?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `Exersice` (ID, `name`, `amount`, `unit`, `userID`,`programID` , `date`, `unixDate`) VALUES  (?, ?, ?, ?, ?, ?, ?, ?)";
             if ($stmt = $mysqli->prepare($sql)) {
-                $stmt->bind_param('ssdsssi', $ID, $exersice, $amount, $unit, $userID, $today, $todayU);
+                $stmt->bind_param('ssdssssi', $ID, $exersice, $amount, $unit, $userID, $programID, $today, $todayU);
                 if ($stmt->execute()) {
                     ?><script>console.log("Done, data to DB");</script><?php
                     header("location:./");
@@ -39,6 +41,7 @@ echo $_SERVER["HTTP_REFERER"];
                 } else {
                     echo "Something wrong in the query: " . $mysqli->error;
                 }
+            
         } else {
             ?><script>console.log("token not right");</script><?php
         }

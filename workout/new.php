@@ -13,13 +13,14 @@ if (isset($_SESSION['ID'])   &&
     if ($_SESSION['verified'] == "1")
         {
         $workoutGet = $_GET['w'];
+        $programID = $_GET['ID'];
 ?>
 <div class="container">
         <div class="col-sm-7 smallcard">
             <div class="card">
                 <h5 class="card-header">New workout</h5>
                 <div class="card-body">
-                    <form action="newProcess.php?w=<?= $workoutGet ?>" method="post">
+                    <form action="newProcess.php?w=<?= $workoutGet ?>&ID=<?= $programID ?>" method="post">
                         <div class="form-group">
                             <label for="exersice">Exersice:*</label>
                             <input type="text" value="<?= $workoutGet ?>" class="form-control" name="exersice" id="exersice" maxlength="255" aria-describedby="ExersiceHelp" require>
@@ -34,6 +35,24 @@ if (isset($_SESSION['ID'])   &&
                             <input type="text" class="form-control" value="KG" name="unit" id="unit" aria-describedby="unitHelp">
                             <small id="unitHelp" class="form-text text-muted">KG/KM/M</small>
                         </div>
+                        <?php
+                        if ($programID){
+                            $sql = "SELECT Title FROM Programs WHERE ID=?"; // SQL with parameters
+                            $stmt = $mysqli->prepare($sql); 
+                            $stmt->bind_param("s", $programID);
+                            $stmt->execute();
+                            $result = $stmt->get_result(); // get the mysqli result
+                            $program = $result->fetch_assoc(); // fetch data  
+                            $programName = $program["Title"];
+                        ?>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" name="program" value="1" id="programSwitch" checked>
+                            <label class="form-check-label" for="programSwitch" aria-describedby="SwitchHelp" ><?= $programName ?></label><br>
+                            <small id="SwitchHelp" class="form-text text-muted">Link to the program</small>
+                        </div>
+                        <?php
+                        }
+                        ?>
                         <input type="hidden" name="csrfToken" value="<?= $Token ?>">
                         <button type="submit" class="btn btn-primary btn-block SubmitBtn">Save workout</button>
                     </form>

@@ -20,12 +20,12 @@ if (isset($_SESSION['ID'])   &&
                     </div>
                 </div>
                 <div class="d-grid gap-2">
-                    <a href="new.php?w=" class="btn bigBtn btn-primary" type="button">New workout</a>
+                    <a href="new.php?w=&ID=" class="btn bigBtn btn-primary" type="button">New workout</a>
                 </div>
             </div>
             <div class="col-sm-8">
                 <?php
-                $query = "SELECT DISTINCT(date) FROM `Exersice` WHERE userID='$userID'";
+                $query = "SELECT DISTINCT(date) FROM `Exersice` WHERE userID='$userID' ORDER BY date DESC";
                 $result = mysqli_query($mysqli, $query);
                 while ($rowDate = mysqli_fetch_array($result))
                 {
@@ -43,10 +43,19 @@ if (isset($_SESSION['ID'])   &&
                         <?php
                         while ($rowEx = mysqli_fetch_array($resultEx))
                         {
+                            $programID = $rowEx['programID'];
+                            $sql = "SELECT Title FROM Programs WHERE ID=?"; // SQL with parameters
+                            $stmt = $mysqli->prepare($sql); 
+                            $stmt->bind_param("s", $programID);
+                            $stmt->execute();
+                            $resultProgram = $stmt->get_result(); // get the mysqli result
+                            $program = $resultProgram->fetch_assoc(); // fetch data  
+                            $programName = $program["Title"];
                         ?>
                         <tr>
                             <td><?= $rowEx['name'] ?></td>
                             <td><?= $rowEx['amount'] . $rowEx['unit'] ?></td>
+                            <td><?= $programName ?></td>
                         </tr>
                         <?php
                         }
