@@ -100,7 +100,6 @@ require 'includes/config.php';
                     <?php
                 }
                 ?>
-                
             </div>
         </div>
     </div>

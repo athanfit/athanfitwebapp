@@ -45,17 +45,15 @@ if (isset($_SESSION['ID'])   &&
                     </div>
                 </div>
                 <div class="d-grid gap-2">
-                    <a href="new.php?w=&ID=" class="btn bigBtn btn-primary" type="button">New workout</a>
-                    <form class="row g-2" action="" method="get">
-                        <div class="col-auto">
-                            <select class="form-select" name="limit" aria-label="workout overview limit change">
+                    <a href="new.php?w=&ID=" style="margin-bottom: 0;" class="btn bigBtn btn-primary" type="button">New workout</a>
+                    <form class="row g-2" style="width: 100%;" action="" method="get">
+                        <div class="input-group mb-3">
+                            <select class="form-select" style="height: 38px;" name="limit" aria-label="workout overview limit change">
                                 <option value="1"<?= $select1 ?>>7 results</option>
                                 <option value="2"<?= $select2 ?>>14 results</option>
                                 <option value="3"<?= $select3 ?>>40 results</option>
                             </select>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary mb-3">Apply</button>
+                            <button type="submit" style="height: 38px;" class="btn btn-primary mb-3">Apply</button>
                         </div>
                     </form>
                 </div>
