@@ -14,9 +14,9 @@ if (isset($_SESSION['ID'])   &&
         {
         $id = $_GET["ID"];
         
-        $sql = "SELECT * FROM Programs WHERE ID = ?"; // SQL with parameters
+        $sql = "SELECT * FROM Programs WHERE ID = ? AND UserID = ?"; // SQL with parameters
         $stmt = $mysqli->prepare($sql); 
-        $stmt->bind_param("s", $id);
+        $stmt->bind_param("ss", $id, $userID);
         $stmt->execute();
         $result = $stmt->get_result(); // get the mysqli result
         $program = $result->fetch_assoc(); // fetch data  
