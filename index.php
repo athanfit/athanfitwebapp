@@ -76,8 +76,8 @@ require 'includes/config.php';
                         ?>
                     </div>
                     <div class="card-footer text-muted">
-                        No account, <a href="signup.php">Click here</a> to signup.<br>
-                        Forgot password? <a href="password/">Click here</a>
+                        No account, <a href="signup.php">Sign up</a><br>
+                        Forgot password? <a href="password/">Reset password</a>
                     </div>
                 </div>
                 <?php

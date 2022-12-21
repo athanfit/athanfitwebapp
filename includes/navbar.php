@@ -12,19 +12,19 @@
             {
             ?>
             <li class="nav-item">
-                <a class="nav-link" href="../workout/">Workouts</a>
+                <a class="nav-link" aria-label="go to workout page" href="../workout/">Workouts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../program/">Program</a>
+                <a class="nav-link" aria-label="go to program page" href="../program/">Program</a>
             </li>
             <?php
             }
             ?>
             <li class="nav-item">
-                <a class="nav-link" href="../Account/">Account</a>
+                <a class="nav-link" aria-label="go to account page" href="../Account/">Account</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../php/logout.php">Logout</a>
+                <a class="nav-link" aria-label="here to logout" href="../php/logout.php">Logout</a>
             </li>
             <?php
             }

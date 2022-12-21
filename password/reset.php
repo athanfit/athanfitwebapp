@@ -44,7 +44,7 @@ if($result){
                             <input type="hidden" name="csrfToken" value="<?= $Token ?>">
                             <div id="description" class="form-text">Enter a new password.</div>
                         </div>
-                        <button type="submit" name="submit" class="btn btn-primary SubmitBtn">Submit</button>           
+                        <button type="submit" name="submit" class="btn btn-primary SubmitBtn">Reset</button>           
                     </form>
                 </div>
                 <div class="card-footer">

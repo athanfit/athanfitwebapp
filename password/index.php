@@ -18,7 +18,7 @@ $_SESSION['token'] = $Token;
                             <input type="hidden" name="csrfToken" value="<?= $Token ?>">
                             <div id="description" class="form-text">Enter the email-adress of the account u want the password reset.</div>
                         </div>
-                        <button type="submit" name="submit" class="btn btn-primary SubmitBtn">Submit</button>           
+                        <button type="submit" name="submit" aria-label="Request reset" class="btn btn-primary SubmitBtn">Request reset</button>           
                     </form>
                 </div>
                 <div class="card-footer">

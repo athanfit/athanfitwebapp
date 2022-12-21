@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = "Aanleden";
+$title = "New program";
 include '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
@@ -38,13 +38,13 @@ if (isset($_SESSION['ID'])   &&
                         </div>
                         
                         <input type="hidden" name="csrfToken" value="<?= $Token ?>">
-                        <button type="submit" class="btn btn-primary btn-block SubmitBtn">Submit</button>
-                        <button type="button" class="btn btn-secondary extraBtn SubmitBtn" onClick="addInput()">Add exersice</button>
+                        <button type="submit" aria-label="Save program" class="btn btn-primary btn-block SubmitBtn">Save program</button>
+                        <button type="button" aria-label="add extra exersice input" class="btn btn-secondary extraBtn SubmitBtn" onClick="addInput()">Add exersice</button>
                     </form>
                 </div>
             </div>
             <div class="d-grid gap-2">
-                <a href="./" class="btn bigBtn btn-outline-primary" type="button">Go back</a>
+                <a href="./" aria-label="go back" class="btn bigBtn btn-outline-primary" type="button">Go back</a>
             </div>
         </div>
     </div>
