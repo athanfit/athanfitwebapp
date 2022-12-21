@@ -8,10 +8,6 @@ $userID = $_SESSION["ID"];
 $today = date("Y-m-d");
 $todayU = time();
 $workoutGet = $_GET['w'];
-$programID = $_GET['ID'];
-if (!$programID){
-    $programID = NULL;
-}
 // HTTP previous page
 // if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://athanfit.com/workout/new.php?w=$workoutGet")
 // {
@@ -22,6 +18,10 @@ if (!$programID){
             $exersice = $_POST['exersice'];
             $amount = $_POST['amount'];
             $unit = $_POST['unit'];
+            $program = $_POST['program'];
+            if ($program){
+                $programID = $_GET['ID'];
+            }
             do {
                 $permitted_chars = '1234567890abcdeABCDE1234567890';
                 $ID = substr(str_shuffle($permitted_chars), 0, 18);
