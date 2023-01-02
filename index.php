@@ -15,6 +15,14 @@ require 'includes/config.php';
                     <?= $_SESSION['Firstname'] ?>, your logged in.
                 </div>
                 <?php
+                if ($_SESSION['verified'] == "1")
+                {
+                ?>
+                <div class="d-grid gap-2">
+                    <a href="body/newWeight.php" aria-label="Add weight" class="btn bigBtn btn-primary" type="button">Add weight</a>
+                </div>
+                <?php
+                }
                 } else {
                 ?>
                 <div class="card">
