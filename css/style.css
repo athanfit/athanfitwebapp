@@ -42,10 +42,14 @@
     margin-top: 0;
 }
 .program-title{
+<<<<<<< HEAD
     font-size: 0.9em;
 }
 @media only screen and (min-width: 992px) {
 .navbar-rightFloat {
     float: right;
 }
+=======
+    font-size: 1.2em;
+>>>>>>> 97d74884c55d7ec43f2a164e38f4c5b6067863a0
 }
