@@ -72,7 +72,7 @@ if (isset($_SESSION['ID'])   &&
                         while ($rowWeight = mysqli_fetch_array($result))
                         {
                             $date = $rowWeight['date'];
-                            $dateFor = date("D d-M", strtotime($date));
+                            $dateFor = date("D d-M", $date);
                         ?>
                         <tr>
                             <td><?= $rowWeight['weight'] ?></td>
