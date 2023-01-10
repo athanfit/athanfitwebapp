@@ -5,7 +5,6 @@ include '../includes/config.php';
 include '../includes/head.php';
 include '../includes/navbar.php';
 $userID = $_SESSION["ID"];
-$exercise = array();
 $today = date("Y-m-d");
 if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://athanfit.com/program/new.php")
 {
@@ -22,11 +21,25 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
             array_pop($data);
             echo $title."<br>";
             echo $description."<br>";
+            $exercises = array();
+            $newExercise = array();
+            $seccondData = false;
             foreach ($data as $value) {
-                array_push($exercise, $value);
+                // array_push($exercises, $value);
+                if ($seccondData)
+                {
+                    $seccondData = false;
+                    array_push($newExercise, $value);
+                    array_push($exercises, $newExercise);
+                } else {
+                    $seccondData = true;
+                    $newExercise = array();
+                    array_push($newExercise, $value);
+                }
             }
-            print_r($exercise)."<br>";
-            $dbExercise = serialize($exercise);
+            
+            print_r($exercises)."<br>";
+            $dbExercise = serialize($exercises);
             do {
                 $permitted_chars = '1234567890abcdeABCDE1234567890';
                 $ID = substr(str_shuffle($permitted_chars), 0, 12);

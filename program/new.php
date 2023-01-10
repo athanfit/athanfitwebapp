@@ -33,8 +33,10 @@ if (isset($_SESSION['ID'])   &&
                         </div>
                         <div class="form-group" id="exersices">
                             <label for="Exersice1">Exersice:*</label>
-                            <input type="text" class="form-control" name="Exersice" id="Exersice" aria-describedby="ExersiceHelp" placeholder="Squat 6-8reps 3sets">
-                            <small id="ExersiceHelp" class="form-text text-muted">Enter here the name of the exersice and if wanted reps and sets.</small>
+                            <input type="text" class="form-control" name="Exersice" id="Exersice" aria-describedby="ExersiceHelp" placeholder="Squat">
+                            <small id="ExersiceHelp" class="form-text text-muted">Enter here the name of the exersice.</small>
+                            <input type="text" class="form-control" name="Set" id="Set" aria-describedby="SetHelp" placeholder="6-8reps 3sets">
+                            <small id="SetHelp" class="form-text text-muted">Enter here the reps and sets.</small>
                         </div>
                         
                         <input type="hidden" name="csrfToken" value="<?= $Token ?>">
