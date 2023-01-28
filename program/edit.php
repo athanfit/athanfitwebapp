@@ -45,13 +45,13 @@ if (isset($_SESSION['ID'])   &&
                         </div>
                         <div class="form-group" id="exersices">
                             <label for="Exersice1">Exersice:*</label>
-                            <input type="text" value="<?= $exercise1 ?>" class="form-control" name="Exersice" id="Exersice" aria-describedby="ExersiceHelp" placeholder="Squat 10-12reps 3sets">
-                            <small id="ExersiceHelp" class="form-text text-muted">Enter here the name of the exersice and if wanted reps and sets.</small>
+                            <input type="text" value="<?= $exercise1[0] ?>" class="form-control" name="Exersice" id="Exersice" aria-describedby="ExersiceHelp" placeholder="Squat">
+                            <input type="text" value="<?= $exercise1[1] ?>" class="form-control" name="Set" id="Set" aria-describedby="SetHelp" placeholder="6-8reps 3sets">
                         </div>
                         <?php
                         foreach ($exercise as $value) {
                             ?>
-                            <script>window.onload = addInput("<?= $value ?>")</script>
+                            <script>window.onload = addInput('<?= $value[0] ?>', '<?= $value[1] ?>')</script>
                             <!-- <div class='form-group'><input type='text' value="" class='form-control' name='Exersice"+counter+"' id='Exersice'><button type='button' class='btn btn-outline-secondary smallBtn' onClick='removeInput("+dynamicInput[counter]+");'> - </button></div> -->
                             <?php
                         }

@@ -23,7 +23,7 @@ if (isset($_SESSION['ID'])   &&
                     <form action="newProcess.php?w=<?= $workoutGet ?>&ID=<?= $programID ?>" method="post">
                         <div class="form-group">
                             <label for="exersice">Exersice:*</label>
-                            <input type="text" value="<?= $workoutGet ?>" class="form-control" name="exersice" id="exersice" maxlength="255" aria-describedby="ExersiceHelp" require>
+                            <input type="text" value="<?= $workoutGet ?>" class="form-control" name="exersice" id="exersice" maxlength="255" aria-describedby="ExersiceHelp" require autocomplete="off">
                             <small id="ExersiceHelp" class="form-text text-muted">Enter here the name of the exersice and if wanted reps and sets or minutes.</small>
                         </div>
                         <div class="form-group">
@@ -63,6 +63,9 @@ if (isset($_SESSION['ID'])   &&
             </div>
         </div>
     </div>
+    <script>
+        autocomplete(document.getElementById("exersice"), exersices);
+    </script>
 <?php
         } else {
             header("location:../");

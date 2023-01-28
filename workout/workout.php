@@ -32,8 +32,8 @@ if (isset($_SESSION['ID'])   &&
                 <div class="card-body">
                     <form action="workoutProcess.php?ID=<?= $id ?>" method="post">
                         <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" value="<?= $name ?>" class="form-control" name="name" id="name" maxlength="255">
+                            <label for="exersice">Name:</label>
+                            <input type="text" value="<?= $name ?>" class="form-control" name="name" id="exersice" maxlength="255" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="amount">Amount:</label>
@@ -56,6 +56,7 @@ if (isset($_SESSION['ID'])   &&
             window.location.href = "delete.php?ID=<?= $id ?>&h=<?= $Token ?>";
         }
     }
+    autocomplete(document.getElementById("exersice"), exersices);
     </script>
 <?php
         } else {

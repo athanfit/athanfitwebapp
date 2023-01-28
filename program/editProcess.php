@@ -7,7 +7,6 @@ include '../includes/navbar.php';
 $id = $_GET['ID'];
 echo $id;
 $userID = $_SESSION["ID"];
-$exercise = array();
 $today = date("Y-m-d");
 if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://athanfit.com/program/edit.php?ID=$id")
 {
@@ -22,11 +21,24 @@ if (isset($_SERVER["HTTP_REFERER"])     && $_SERVER["HTTP_REFERER"] == "https://
             array_pop($data);
             echo $title."<br>";
             echo $description."<br>";
+            $exercises = array();
+            $newExercise = array();
+            $seccondData = false;
             foreach ($data as $value) {
-                array_push($exercise, $value);
+                // array_push($exercises, $value);
+                if ($seccondData)
+                {
+                    $seccondData = false;
+                    array_push($newExercise, $value);
+                    array_push($exercises, $newExercise);
+                } else {
+                    $seccondData = true;
+                    $newExercise = array();
+                    array_push($newExercise, $value);
+                }
             }
-            print_r($exercise)."<br>";
-            $dbExercise = serialize($exercise);
+            print_r($exercises)."<br>";
+            $dbExercise = serialize($exercises);
             $sql = "UPDATE `Programs` SET `Title`=? , `Description`=? , `Program`=? , `Date`=? WHERE ID=?";
             if ($stmt = $mysqli->prepare($sql)) {
                 $stmt->bind_param('sssss', $title, $description, $dbExercise, $today, $id);

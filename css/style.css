@@ -41,6 +41,11 @@
 .workoutUl{
     margin-top: 0;
 }
+#count{
+    margin: 0.5em auto;
+    width: 0em;
+    font-size: 2em;
+}
 .program-title{
 <<<<<<< HEAD
     font-size: 0.9em;
